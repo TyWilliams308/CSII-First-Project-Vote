@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QApplication
 from voteloginlogic import *
 
 
-def main():
+def main() -> None:
     application = QApplication([])
     window = Voteloginlogic()
     window.show()

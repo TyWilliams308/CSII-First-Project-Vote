@@ -7,13 +7,13 @@ from voteloginui import *
 
 
 class Voteloginlogic(QMainWindow, Ui_MainVoteWindow):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
 
         self.LoginButton.clicked.connect(lambda: self.submit())
 
-    def submit(self):
+    def submit(self) -> None:
         id = self.IdentificationField.text().strip()
         password = self.PasswordField.text().strip()
 
@@ -63,13 +63,13 @@ class Voteloginlogic(QMainWindow, Ui_MainVoteWindow):
                 self.create_account(id, password)
                 return
 
-    def create_account(self, id, password):
+    def create_account(self, id, password) -> None:
         with open("voteraccounts.csv", "a", newline="") as accounts:
             content = csv.writer(accounts)
             content.writerow([id, password])
         self.open_account(id)
 
-    def open_account(self, id):
+    def open_account(self, id) -> None:
         time.sleep(2)
         self.vote_window = Votelogic(
             id, self

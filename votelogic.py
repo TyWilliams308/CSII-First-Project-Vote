@@ -8,7 +8,7 @@ from voteui import *
 class Votelogic(QMainWindow, Ui_MainWindow):
     account_id = 0
 
-    def __init__(self, id, login_window):
+    def __init__(self, id, login_window) -> None:
         super().__init__()
         self.setupUi(self)
         self.account_id = id
@@ -17,7 +17,7 @@ class Votelogic(QMainWindow, Ui_MainWindow):
         self.SubmitButton.clicked.connect(lambda: self.submit())
         self.load_data()
 
-    def load_data(self):
+    def load_data(self) -> None:
         try:
             with open("votedata.csv", "r") as file:
                 reader = csv.reader(file)
@@ -35,7 +35,7 @@ class Votelogic(QMainWindow, Ui_MainWindow):
         except FileNotFoundError:
             pass
 
-    def submit(self):
+    def submit(self) -> None:
         first = self.FirstNameField.text().strip()
         last = self.LastNameField.text().strip()
         dob = self.DobDate.text().strip()
