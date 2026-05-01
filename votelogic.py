@@ -9,6 +9,7 @@ class Votelogic(QMainWindow, Ui_MainWindow):
     account_id = 0
 
     def __init__(self, id, login_window) -> None:
+        """Initializes the voting window for the given account ID and loads existing data."""
         super().__init__()
         self.setupUi(self)
         self.account_id = id
@@ -18,6 +19,7 @@ class Votelogic(QMainWindow, Ui_MainWindow):
         self.load_data()
 
     def load_data(self) -> None:
+        """Loads previously saved vote data for the current account from the CSV file."""
         try:
             with open("votedata.csv", "r") as file:
                 reader = csv.reader(file)
@@ -36,6 +38,7 @@ class Votelogic(QMainWindow, Ui_MainWindow):
             pass
 
     def submit(self) -> None:
+        """Validates and saves the vote, then returns to the login window."""
         first = self.FirstNameField.text().strip()
         last = self.LastNameField.text().strip()
         dob = self.DobDate.text().strip()

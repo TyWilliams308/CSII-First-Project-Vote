@@ -8,12 +8,14 @@ from voteloginui import *
 
 class Voteloginlogic(QMainWindow, Ui_MainVoteWindow):
     def __init__(self) -> None:
+        """Initializes the voter login window and connects the login button."""
         super().__init__()
         self.setupUi(self)
 
         self.LoginButton.clicked.connect(lambda: self.submit())
 
     def submit(self) -> None:
+        """Validates the entered ID and password, then logs in or creates a new account."""
         id = self.IdentificationField.text().strip()
         password = self.PasswordField.text().strip()
 
@@ -64,12 +66,14 @@ class Voteloginlogic(QMainWindow, Ui_MainVoteWindow):
                 return
 
     def create_account(self, id, password) -> None:
+        """Creates a new voter account and writes it to the CSV file."""
         with open("voteraccounts.csv", "a", newline="") as accounts:
             content = csv.writer(accounts)
             content.writerow([id, password])
         self.open_account(id)
 
     def open_account(self, id) -> None:
+        """Opens the voting window for the given account ID and closes the login window."""
         time.sleep(2)
         self.vote_window = Votelogic(
             id, self
